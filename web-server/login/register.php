@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Admin Registration</title>
+    <title>User Registration</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -45,8 +45,8 @@
 </head>
 <body>
 
-<h1>🔒 Admin Registration</h1>
-<p>Register a new admin account.</p>
+<h1>🔒 User Registration</h1>
+<p>Register a new user account.</p>
 
 <form method="POST">
     <input type="text" name="user" placeholder="Username" required><br>
@@ -60,8 +60,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $pass = $_POST["pass"];
     
     // Простейший способ "сохранить" пользователя (НЕ безопасный, но ок для CTF)
-    file_put_contents("admin.txt", "$user:$pass\n", FILE_APPEND);
-    echo "<p style='color: lightgreen;'>Admin account created!</p>";
+    file_put_contents("/var/private/admin.txt", "$user:$pass\n", FILE_APPEND);
+    echo "<p style='color: lightgreen;'>Account created!</p>";
 }
 ?>
 

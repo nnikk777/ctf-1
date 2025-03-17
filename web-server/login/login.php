@@ -62,20 +62,23 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $user = $_POST["user"];
     $pass = $_POST["pass"];
     
-    $accounts = file("admin.txt", FILE_IGNORE_NEW_LINES);
+    $accounts = file("/var/private/admin.txt", FILE_IGNORE_NEW_LINES);
     foreach ($accounts as $account) {
-        list($stored_user, $stored_pass) = explode(":", $account);
-        if ($user === $stored_user && $pass === $stored_pass) {
-            echo "<p style='color: lightgreen;'>Welcome, admin!</p>";
-	    echo "<p>Your flag: <strong>$flag</strong></p>";
-	    exit;
+    	list($stored_user, $stored_pass) = explode(":", $account);
+
+    	if ($user === $stored_user && $pass === $stored_pass) {
+        	if ($user === "Jane") { // Проверяем, что зашел именно admin
+            	echo "<p style='color: lightgreen;'>Welcome, admin!</p>";
+            	echo "<p>Your flag: <strong>$flag</strong></p>";
+        	} else {
+            	echo "<p style='color: lightgreen;'>Welcome, $stored_user!</p>";
         }
+        exit;
+    	}
     }
-    echo "<p style='color: red;'>Invalid credentials.</p>";
 }
 
 ?>
 
 </body>
 </html>
-
