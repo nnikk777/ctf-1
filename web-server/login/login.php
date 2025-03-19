@@ -67,7 +67,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     	list($stored_user, $stored_pass) = explode(":", $account);
 
     	if ($user === $stored_user && $pass === $stored_pass) {
-        	if ($user === "Jane") { // Проверяем, что зашел именно admin
+        	if ($user === "admin") {
             	echo "<p style='color: lightgreen;'>Welcome, admin!</p>";
             	echo "<p>Your flag: <strong>$flag</strong></p>";
         	} else {
